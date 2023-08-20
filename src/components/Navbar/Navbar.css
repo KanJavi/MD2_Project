@@ -1,0 +1,19 @@
+
+.container1 {
+    background-color: black;
+    display: flex;
+    justify-content: space-between
+}
+.container1 p {
+    color: aliceblue;
+    margin: 50px;
+    
+}
+#logo {
+    font-size: 70px;
+    color: aliceblue;
+    margin-left: 40px;
+}
+.bg-body-tertiary navbar navbar-expand-lg navbar-light {
+    color: red;
+}

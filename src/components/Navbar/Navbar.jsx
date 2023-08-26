@@ -7,6 +7,9 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import HomePage from "../HomePage/HomePage";
+import { Route, Routes, Link } from "react-router-dom";
+import LoginPage from "../LoginPage/LoginPage";
 
 function CollapsibleExample() {
   const [show, setShow] = useState(false);
@@ -17,9 +20,9 @@ function CollapsibleExample() {
     <div>
       <div class="container1">
         {" "}
-        <Navbar.Brand id="logo" href="#home">
+        <Link className="link" to="/" id="logo" href="#home">
           KanJav
-        </Navbar.Brand>
+        </Link>
         <p>Tel: +81 70 4076 8283</p>
       </div>
       <Navbar
@@ -28,34 +31,33 @@ function CollapsibleExample() {
         expand="lg"
         className="bg-body-tertiary"
       >
-        <Container>
+        <Container id="navbar">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
+              <Link className="link" to="/">
+                Trang chủ
+              </Link>
+              <Link className="link" href="#pricing">
+                Giới thiệu
+              </Link>
+              <Link className="link" href="#pricing">
+                FK310
+              </Link>
+              <Link className="link" href="#pricing">
+                Sản phẩm bán chạy
+              </Link>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">Đăng Nhập</Nav.Link>
+              <Link className="link" href="#deets" to="/login">
+                Đăng Nhập
+              </Link>
 
-              <Nav.Link eventKey={2} href="#memes">
+              <Link eventKey={2} href="#memes" className="link" to="/register">
                 Đăng Ký
-              </Nav.Link>
-              <Button variant="primary" onClick={handleShow}>
-                Giỏ hàng
+              </Link>
+              <Button id="cart" variant="primary" onClick={handleShow}>
+                <i class="fa-solid fa-cart-shopping"></i>
               </Button>
               <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
               <Offcanvas show={show} onHide={handleClose}>

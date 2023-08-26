@@ -14,20 +14,20 @@ function HomePage() {
     {
       id: 1,
       img: Anh0,
-      name: "IPhone14",
-      price: 140000,
+      name: "FK310 LAⅢSport Sp",
+      price: "50.000.000đ",
     },
     {
       id: 2,
       img: Anh1,
-      name: "anh den",
-      price: 200000,
+      name: "FK310 LAⅢclassic",
+      price: "60.000.000đ",
     },
     {
       id: 3,
       img: Anh2,
-      name: "SamSung",
-      price: 100000,
+      name: "FK310 LAⅢSportSp",
+      price: "50.000.000đ",
     },
   ]);
   return (

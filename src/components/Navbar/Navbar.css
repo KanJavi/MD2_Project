@@ -13,7 +13,23 @@
     font-size: 70px;
     color: aliceblue;
     margin-left: 40px;
+    font-style:oblique;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .bg-body-tertiary navbar navbar-expand-lg navbar-light {
     color: red;
+}
+.link {
+    text-decoration: none;
+    padding: 7px;
+    border:1px;
+    color: black;
+}
+#cart {
+    background-color:#F8F9FA ;
+    border: none;
+    color: black;
+}
+#container-navbar{
+    background-color: #AD0203;
 }

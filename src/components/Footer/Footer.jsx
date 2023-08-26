@@ -15,9 +15,7 @@ function Footer() {
           {/* Left */}
           {/* Right */}
           <div>
-            <a href="" className="me-4 text-reset">
-              <i className="fab fa-facebook-f" />
-            </a>
+            <a href="" className="me-4 text-reset"></a>
             <a href="" className="me-4 text-reset">
               <i className="fab fa-twitter" />
             </a>
@@ -47,7 +45,7 @@ function Footer() {
                 {/* Content */}
                 <h6 className="text-uppercase fw-bold mb-4">
                   <i className="fas fa-gem me-3" />
-                  Company name
+                  Công ty trách nhiệm hữu hạn một thành viên
                 </h6>
                 <p>
                   Here you can use rows and columns to organize your footer
@@ -88,22 +86,22 @@ function Footer() {
                 <h6 className="text-uppercase fw-bold mb-4">Theo dõi</h6>
                 <p>
                   <a href="#!" className="text-reset">
-                    <FontAwesomeIcon icon="fa-brands fa-facebook" /> a
+                    <FontAwesomeIcon icon="fa-brands fa-facebook" /> Facebook
                   </a>
                 </p>
                 <p>
                   <a href="#!" className="text-reset">
-                    Settings
+                    Instagram
                   </a>
                 </p>
                 <p>
                   <a href="#!" className="text-reset">
-                    Orders
+                    Line
                   </a>
                 </p>
                 <p>
                   <a href="#!" className="text-reset">
-                    Help
+                    Zalo
                   </a>
                 </p>
               </div>

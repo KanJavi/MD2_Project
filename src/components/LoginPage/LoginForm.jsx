@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./LoginForm.css";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 function LoginForm() {
   const [userData, setUserData] = useState([]);
   const [loginData, setLoginData] = useState({
     username: "",
-    passoword: "",
+    password: "",
   });
   const navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/users")
@@ -19,21 +21,22 @@ function LoginForm() {
         console.log(err);
       });
   }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
   };
-  console.log(userData);
-  console.log(loginData);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = userData.find(
       (user) =>
         user.username === loginData.username &&
-        user.password === loginData.passoword
+        user.password === loginData.password
     );
+
     console.log(user);
-    if (user.id) {
+    if (user && user.id) {
       axios
         .patch(`http://localhost:8000/users/${user.id}`, {
           isLogin: true,
@@ -45,43 +48,43 @@ function LoginForm() {
           console.log(err);
         });
       localStorage.setItem("isLoginId", user.id);
-      console.log("dang nhap thanh cong", user);
+      console.log("Đăng nhập thành công", user);
       navigate("/");
     } else {
-      console.log("sai thong tin dang nhap");
+      console.log("Sai thông tin đăng nhập");
     }
   };
 
   return (
     <div id="body">
       <div id="container">
-        <h1>Register Form</h1>
+        <h1>Login Form</h1>
         <form id="form" onSubmit={handleSubmit}>
           <div className="form-control">
             <input
               className="form-control1"
-              name="email"
-              type="email"
-              id="emailRegister"
-              placeholder="Email"
-              onchange={handleInputChange}
+              name="username"
+              type="text"
+              id="username"
+              placeholder="Username"
+              onChange={handleInputChange}
             />
-            <div className="error-message" id="emailError" />
+            <div className="error-message" id="usernameError" />{" "}
           </div>
           <div className="form-control">
             <input
               className="form-control1"
               type="password"
               name="password"
-              id="passwordRegister"
+              id="password"
               placeholder="Password"
-              onchange={handleInputChange}
+              onChange={handleInputChange}
             />
             <div className="error-message" id="passwordError" />
           </div>
 
           <button type="submit" className="btn-submit">
-            Register
+            Login
           </button>
         </form>
       </div>

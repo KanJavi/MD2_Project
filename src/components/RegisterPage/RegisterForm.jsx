@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {
+  const navigate = useNavigate();
   const initialUser = { username: "", email: "", password: "", rePassword: "" };
   const [user, setUser] = useState(initialUser);
   const [formError, setFormError] = useState({});
@@ -59,8 +60,6 @@ function RegisterForm() {
         });
     }
   };
-
-  const navigate = useNavigate();
 
   return (
     <div id="body">

@@ -18,9 +18,8 @@ function RegisterForm() {
     }
     if (isEmptyValue(user.password)) {
       errors.password = "Vui lòng nhập mật khẩu";
-    }
-    if (isEmptyValue(user.rePassword)) {
-      errors.rePassword = "Vui lòng nhập lại mật khẩu";
+    } else if (user.rePassword !== user.password) {
+      errors.rePassword = "Nhập lại mật khẩu không đúng";
     }
 
     setFormError(errors);
@@ -120,7 +119,7 @@ function RegisterForm() {
             <input
               className="form-control1"
               type="password"
-              name="confirmPassword"
+              name="rePassword"
               id="comfirmPasswordRegister"
               placeholder="Nhập lại mật khẩu"
               value={user.rePassword}

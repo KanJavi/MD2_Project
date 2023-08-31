@@ -33,3 +33,7 @@
 #container-navbar{
     background-color: #AD0203;
 }
+.navbar {
+    position: sticky;
+    
+}

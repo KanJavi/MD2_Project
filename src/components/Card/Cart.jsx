@@ -13,7 +13,7 @@ function BasicExample(props) {
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>
         <Card.Text>{item.price}</Card.Text>
-        <Button variant="primary">Thêm vào giỏ hàng</Button>
+        <Button variant="dark">Thêm vào giỏ hàng</Button>
       </Card.Body>
     </Card>
   );

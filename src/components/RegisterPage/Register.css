@@ -13,15 +13,15 @@
   justify-content: center;
   align-items: center;
   background-image: url("./top7.png");
-  width: 100%;
+  width: 500px;
   background-size: cover;
 }
 #container {
+
   width: 400px;
   border: none;
   border-radius: 10px;
   background-color: white;
-  padding: 40px;
 }
 #h1login {
   text-align: center;
@@ -47,7 +47,7 @@
   border-radius: 25px;
   border: none;
   outline: none;
-  background: #3ca7ee;
+  background: #6b8190;
   color: white;
   font-size: 18px;
   font-weight: bold;

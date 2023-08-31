@@ -19,6 +19,9 @@ function RegisterForm() {
     }
     if (isEmptyValue(user.password)) {
       errors.password = "Vui lòng nhập mật khẩu";
+    }
+    if (isEmptyValue(user.rePassword)) {
+      errors.rePassword = "Vui lòng nhập lại mật khẩu";
     } else if (user.rePassword !== user.password) {
       errors.rePassword = "Nhập lại mật khẩu không đúng";
     }
@@ -48,7 +51,6 @@ function RegisterForm() {
           username: user.username,
           email: user.email,
           password: user.password,
-          rePassword: user.rePassword,
           isLogin: false,
         })
         .then((response) => {

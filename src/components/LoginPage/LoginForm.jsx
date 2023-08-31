@@ -9,6 +9,7 @@ function LoginForm() {
     username: "",
     password: "",
   });
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,18 +26,37 @@ function LoginForm() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
+    setErrors({ ...errors, [name]: "" });
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = {};
+
+    if (isEmptyValue(loginData.email)) {
+      newErrors.email = "Vui lòng nhập email";
+      isValid = false;
+    }
+    if (isEmptyValue(loginData.password)) {
+      newErrors.password = "Vui lòng nhập mật khẩu";
+      isValid = false;
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  const isEmptyValue = (value) => {
+    return !value || value.trim().length < 1;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = userData.find(
       (user) =>
-        user.username === loginData.username &&
-        user.password === loginData.password
+        user.email === loginData.email && user.password === loginData.password
     );
 
     console.log(user);
-    if (user && user.id) {
+    if (validateForm(user && user.id)) {
       axios
         .patch(`http://localhost:8000/users/${user.id}`, {
           isLogin: true,
@@ -63,13 +83,18 @@ function LoginForm() {
           <div className="form-control">
             <input
               className="form-control1"
-              name="username"
-              type="text"
-              id="username"
-              placeholder="Username"
+              name="email"
+              type="email"
+              id="email"
+              placeholder="Email"
               onChange={handleInputChange}
             />
-            <div className="error-message" id="usernameError" />{" "}
+
+            {errors.email && (
+              <div className="error-message" id="emailError">
+                {errors.email}
+              </div>
+            )}
           </div>
           <div className="form-control">
             <input
@@ -80,7 +105,11 @@ function LoginForm() {
               placeholder="Password"
               onChange={handleInputChange}
             />
-            <div className="error-message" id="passwordError" />
+            {errors.password && (
+              <div className="error-message" id="passwordError">
+                {errors.password}
+              </div>
+            )}
           </div>
 
           <button type="submit" className="btn-submit">

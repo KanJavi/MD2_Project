@@ -3,7 +3,7 @@ import axios from "axios";
 import "./Product.css";
 import { useParams } from "react-router-dom";
 
-function Product() {
+function Product(props) {
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState([]);
   const param = useParams();

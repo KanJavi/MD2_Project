@@ -13,8 +13,9 @@
   justify-content: center;
   align-items: center;
   background-image: url("./top7.png");
-  width: 500px;
+  width: 100%;
   background-size: cover;
+
 }
 #container {
 
@@ -22,6 +23,10 @@
   border: none;
   border-radius: 10px;
   background-color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+
 }
 #h1login {
   text-align: center;
@@ -39,7 +44,7 @@
   border-bottom: 2px solid #adadad;
 }
 .btn-submit:hover {
-  background: #08669a;
+  background:black;
 }
 .btn-submit {
   width: 100%;

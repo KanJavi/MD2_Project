@@ -7,17 +7,16 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import HomePage from "../HomePage/HomePage";
-import { Route, Routes, Link } from "react-router-dom";
-import LoginPage from "../LoginPage/LoginPage";
 
-function CollapsibleExample() {
+import { Route, Routes, Link } from "react-router-dom";
+
+function CollapsibleExample({ size }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <div>
+    <div id="navbar-home">
       <div class="container1">
         {" "}
         <Link className="link" to="/" id="logo" href="#home">
@@ -41,7 +40,7 @@ function CollapsibleExample() {
               <Link className="link" href="#pricing">
                 Giới thiệu
               </Link>
-              <Link className="link" href="#pricing">
+              <Link className="link" to="/product">
                 FK310
               </Link>
               <Link className="link" href="#pricing">
@@ -56,9 +55,11 @@ function CollapsibleExample() {
               <Link eventKey={2} href="#memes" className="link" to="/register">
                 Đăng Ký
               </Link>
-              <Button id="cart" variant="primary" onClick={handleShow}>
+              <div id="cart" variant="primary" onClick={handleShow}>
+                {" "}
                 <i class="fa-solid fa-cart-shopping"></i>
-              </Button>
+                <span id="count">{size}</span>
+              </div>
               <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
               <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>

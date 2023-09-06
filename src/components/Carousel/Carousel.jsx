@@ -9,36 +9,36 @@ function DarkVariantExample() {
   return (
     <Carousel data-bs-theme="dark">
       <Carousel.Item>
-        <img className="d-block w-100" src={Anh0} alt="First slide" />
-        <Carousel.Caption>
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
+        <img
+          className="d-block w-100"
+          src="http://www.fuki.co.jp/img/top2.png"
+          alt="First slide"
+        />
+        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={Anh1} alt="Second slide" />
-        <Carousel.Caption>
-          <h5>Second slide label</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
+        <img
+          className="d-block w-100"
+          src="http://www.fuki.co.jp/img/top4.png"
+          alt="Second slide"
+        />
+        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={Anh2} alt="Third slide" />
-        <Carousel.Caption>
-          <h5>Third slide label</h5>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
+        <img
+          className="d-block w-100"
+          src="http://www.fuki.co.jp/img/top8.png"
+          alt="Third slide"
+        />
+        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={Anh3} alt="Third slide" />
-        <Carousel.Caption>
-          <h5>Third slide label</h5>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
+        <img
+          className="d-block w-100"
+          src="http://www.fuki.co.jp/img/top7.png"
+          alt="Third slide"
+        />
+        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
     </Carousel>
   );

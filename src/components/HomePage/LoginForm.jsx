@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./LoginForm.css";
+import "./Register.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -54,8 +54,11 @@ function LoginForm() {
       (user) =>
         user.email === loginData.email && user.password === loginData.password
     );
-
+    if (user.email === "admin" && user.password === "admin123") {
+      navigate("/admin");
+    }
     console.log(user);
+
     if (validateForm(user && user.id)) {
       axios
         .patch(`http://localhost:8000/users/${user.id}`, {

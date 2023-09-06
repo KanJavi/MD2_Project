@@ -2,7 +2,8 @@
 .container1 {
     background-color: black;
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
+    width: 100%;
 }
 .container1 p {
     color: aliceblue;
@@ -29,11 +30,49 @@
     background-color:#F8F9FA ;
     border: none;
     color: black;
+    padding: 5px;
+    margin-top: 3px;
+    margin-left: 5px;
 }
 #container-navbar{
-    background-color: #AD0203;
-}
-.navbar {
-    position: sticky;
+    background-color:black;
     
 }
+
+#count{
+    margin-left: 3px;
+    margin-bottom: 5px;
+}
+/* 
+#navbar-home{
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+ 
+  padding:  0; Khoảng cách giữa nội dung và các cạnh navbar
+  z-index: 10;
+} */
+.navbar a {
+    color: #0b0909;
+    text-decoration: none;
+    padding: 15px 20px;
+  }
+  .navbar a:hover {
+    background-color: #b8afaf; /* Màu nền khi di chuột qua */
+    border-radius: 5px; /* Bo góc */
+  }
+  .navbar i {
+    color: #0b0909;
+    text-decoration: none;
+    margin-top: 10px;
+
+  }
+  .navbar i:hover {
+    background-color: #b8afaf; /* Màu nền khi di chuột qua */
+    border-radius: 5px; /* Bo góc */
+  }
+  .navbar {
+    transition: background-color 0.3s ease;
+  }

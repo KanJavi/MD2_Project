@@ -13,6 +13,11 @@ import { Route, Routes, Link } from "react-router-dom";
 function CollapsibleExample({ size }) {
   const [show, setShow] = useState(false);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
@@ -48,13 +53,22 @@ function CollapsibleExample({ size }) {
               </Link>
             </Nav>
             <Nav>
-              <Link className="link" href="#deets" to="/login">
-                Đăng Nhập
-              </Link>
-
-              <Link eventKey={2} href="#memes" className="link" to="/register">
-                Đăng Ký
-              </Link>
+              {isLoggedIn ? (
+                // Nếu đã đăng nhập, hiển thị nút "Đăng xuất"
+                <Link className="link" to="#" onClick={handleLogout}>
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                </Link>
+              ) : (
+                // Nếu chưa đăng nhập, hiển thị nút "Đăng nhập" và "Đăng ký"
+                <>
+                  <Link className="link" to="/login">
+                    Đăng Nhập
+                  </Link>
+                  <Link eventKey={2} className="link" to="/register">
+                    Đăng Ký
+                  </Link>
+                </>
+              )}
               <div id="cart" variant="primary" onClick={handleShow}>
                 {" "}
                 <i class="fa-solid fa-cart-shopping"></i>

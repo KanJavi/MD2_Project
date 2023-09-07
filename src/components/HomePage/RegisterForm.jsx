@@ -67,7 +67,7 @@ function RegisterForm() {
   return (
     <div id="body">
       <div id="container">
-        <h1>Register Form</h1>
+        <h1>Đăng Ký</h1>
         <form id="form" onSubmit={handleSubmit}>
           <div className="form-control">
             <input
@@ -75,7 +75,7 @@ function RegisterForm() {
               name="username"
               type="text"
               id="userNameRegister"
-              placeholder="Username"
+              placeholder="Tên người dùng"
               value={user.username}
               onChange={handleInputChange}
             />
@@ -107,7 +107,7 @@ function RegisterForm() {
               type="password"
               name="password"
               id="passwordRegister"
-              placeholder="Password"
+              placeholder="Mật khẩu"
               value={user.password}
               onChange={handleInputChange}
             />
@@ -134,7 +134,7 @@ function RegisterForm() {
             )}
           </div>
           <button type="submit" className="btn-submit">
-            Register
+            Đăng ký
           </button>
         </form>
       </div>

@@ -43,15 +43,15 @@
     margin-left: 3px;
     margin-bottom: 5px;
 }
-/* 
-#navbar-home{
+
+/* #navbar-home{
     position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   
- 
-  padding:  0; Khoảng cách giữa nội dung và các cạnh navbar
+
+  padding:  0; 
   z-index: 10;
 } */
 .navbar a {

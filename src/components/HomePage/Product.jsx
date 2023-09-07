@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Product.css";
-import { useParams } from "react-router-dom";
 
-function Product(props) {
+import { useParams } from "react-router-dom";
+function Product() {
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState([]);
   const param = useParams();
-  console.log(param); //productID2
-
+  console.log(param); //productId:2
+  // Dữ liệu product
   useEffect(() => {
     axios
       .get("http://localhost:8000/products")
@@ -22,9 +21,10 @@ function Product(props) {
         setProduct(findProduct);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
+  // Dữ liệu Cart
   useEffect(() => {
     axios
       .get("http://localhost:8000/carts")
@@ -32,13 +32,12 @@ function Product(props) {
         setCart(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }, []);
-  // Ham Buy
-  const handleBuy = () => {
-    console.log("product", cart);
-  };
+  // Hàm buy
+  const handleBuy = () => {};
+  console.log("product", cart);
   return (
     <div>
       <h1>Chi tiết sản phẩm</h1>

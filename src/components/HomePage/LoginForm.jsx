@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Register.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap/Button";
 
 function LoginForm() {
   const [userData, setUserData] = useState([]);
@@ -11,6 +12,7 @@ function LoginForm() {
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     axios
@@ -54,6 +56,7 @@ function LoginForm() {
       (user) =>
         user.email === loginData.email && user.password === loginData.password
     );
+    // đăng nhập vào tài khoản admin
     if (user.email === "admin" && user.password === "admin123") {
       navigate("/admin");
     }
@@ -70,6 +73,7 @@ function LoginForm() {
         .catch((err) => {
           console.log(err);
         });
+      setIsLoggedIn(true);
       localStorage.setItem("isLoginId", user.id);
       console.log("Đăng nhập thành công", user);
       navigate("/");
@@ -81,7 +85,7 @@ function LoginForm() {
   return (
     <div id="body">
       <div id="container">
-        <h1>Login Form</h1>
+        <h1>Đăng nhập</h1>
         <form id="form" onSubmit={handleSubmit}>
           <div className="form-control">
             <input
@@ -105,7 +109,7 @@ function LoginForm() {
               type="password"
               name="password"
               id="password"
-              placeholder="Password"
+              placeholder="Mật khẩu"
               onChange={handleInputChange}
             />
             {errors.password && (
@@ -116,7 +120,7 @@ function LoginForm() {
           </div>
 
           <button type="submit" className="btn-submit">
-            Login
+            Đăng nhập
           </button>
         </form>
       </div>

@@ -1,17 +1,15 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Anh0 from "../Carousel/top0.png";
-import Anh1 from "../Carousel/top1.png";
-import Anh2 from "../Carousel/top2.png";
-import Cart from "../Card/Cart";
+
 import axios from "axios";
 function BasicExample(props) {
   console.log("Card", props);
   // destructuring
+
   const { key, item, cart, setCart } = props;
   console.log(cart);
   const handleBuy = (e, i) => {
-    console.log(i);
+    console.log("Sending Axios POST request...");
     let findItem = cart.find((item) => item.productId === i);
     if (!findItem) {
       axios
@@ -25,8 +23,8 @@ function BasicExample(props) {
         })
         .then((res) => {
           console.log(res);
-          // update the cart state after successful addition
-          setCart([...cart, res.data]); //
+          // Thêm sản phẩm mới vào giỏ hàng
+          setCart([...cart, res.data]);
         })
         .catch((err) => console.log(err));
     } else {
@@ -36,6 +34,7 @@ function BasicExample(props) {
           amount: updateAmount,
         })
         .then((res) => {
+          // Cập nhật số lượng sản phẩm trong giỏ hàng
           const updatedCart = cart.map((item) =>
             item.productId === i ? { ...item, amount: updateAmount } : item
           );

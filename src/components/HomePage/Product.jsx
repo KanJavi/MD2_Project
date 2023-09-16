@@ -1,62 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
 import axios from "axios";
 
-import { useParams } from "react-router-dom";
-function Product() {
-  const [product, setProduct] = useState([]);
-  const [cart, setCart] = useState([]);
-  const param = useParams();
-  console.log(param); //productId:2
-  // Dữ liệu product
+const Product = () => {
+  const [product, setProduct] = useState({});
+  const [cart, setCart] = useState([]); // State lưu trữ giỏ hàng
+
+  const { id } = useParams();
+
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/products")
-      .then((response) => {
-        console.log(response.data);
-        let dataProduct = response.data;
-        let findProduct = dataProduct.find(
-          (e) => e.id === Number(param.productId)
-        );
-        console.log(findProduct);
-        setProduct(findProduct);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-  // Dữ liệu Cart
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/carts")
-      .then((response) => {
-        setCart(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-  // Hàm buy
-  const handleBuy = () => {};
-  console.log("product", cart);
+    if (id) {
+      axios
+        .get(`http://localhost:8000/products/${id}`)
+
+        .then((response) => {
+          console.log("API response:", response.data);
+          console.log(response.data);
+          setProduct(response.data);
+        })
+        .catch((error) => {
+          console.error("API error:", error);
+        });
+    }
+  }, [id]);
+  console.log("Product state:", product);
+
+  // Hàm xử lý khi người dùng nhấn vào nút "Thêm vào giỏ hàng"
+  const handleBuy = () => {
+    // Tạo một bản sao mới của giỏ hàng
+    const newCart = [...cart];
+
+    // Thêm sản phẩm vào giỏ hàng
+    newCart.push(product);
+
+    setCart(newCart);
+
+    console.log("Giỏ hàng:", newCart);
+  };
+
   return (
-    <div>
-      <h1>Chi tiết sản phẩm</h1>
-      <div className="container">
-        <div className="product-img">
-          <img src={product.img} alt="" />
-        </div>
-        <div className="product-content">
-          <h3>{product.name}</h3>
-          <br />
-          <h4>{product.price}</h4>
-          <br />
-          <button className="check-out" onClick={handleBuy}>
-            Mua ngay
-          </button>
-        </div>
-      </div>
+    <div className="cart-item">
+      <Card style={{ width: "18rem" }}>
+        <Card.Img variant="top" src={product.img} />
+        <Card.Body>
+          <Card.Title>{product.name}</Card.Title>
+          <Card.Text>{product.price}</Card.Text>
+          <Button variant="dark" onClick={handleBuy}>
+            Thêm vào giỏ hàng
+          </Button>
+        </Card.Body>
+      </Card>
     </div>
   );
-}
+};
 
 export default Product;

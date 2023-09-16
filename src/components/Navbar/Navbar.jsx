@@ -8,18 +8,21 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Route, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function CollapsibleExample({ size }) {
+function CollapsibleExample(props) {
+  const { cart } = props;
   const [show, setShow] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLogout = () => {
     setIsLoggedIn(false);
+    localStorage.removeItem("isLoggedIn");
   };
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
     <div id="navbar-home">
       <div class="container1">
@@ -72,7 +75,7 @@ function CollapsibleExample({ size }) {
               <div id="cart" variant="primary" onClick={handleShow}>
                 {" "}
                 <i class="fa-solid fa-cart-shopping"></i>
-                <span id="count">{size}</span>
+                <span id="count">{cart.length}</span>
               </div>
               <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
               <Offcanvas show={show} onHide={handleClose}>
@@ -80,8 +83,20 @@ function CollapsibleExample({ size }) {
                   <Offcanvas.Title>Giỏ hàng</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  Some text as placeholder. In real life you can have the
-                  elements you have chosen. Like, text, images, lists, etc.
+                  {cart.length === 0 ? (
+                    <p>Giỏ hàng của bạn đang trống.</p>
+                  ) : (
+                    <ul>
+                      {cart.map((item) => (
+                        <li key={item.id}>
+                          <img src={item.productImg} alt={item.productName} />
+                          <p>{item.productName}</p>
+                          <p>Giá: {item.productPrice}</p>
+                          <p>Số lượng: {item.amount}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </Offcanvas.Body>
               </Offcanvas>
             </Nav>

@@ -7,10 +7,11 @@ import Anh1 from "./img/vang1.jpg";
 import Anh2 from "./img/dodo.jpg";
 import Cart from "../Card/Cart";
 import Product from "../HomePage/Product";
+import { Cartcontext } from "../../context/Context";
 
 import "./HomePage.css";
 
-function HomePage() {
+function HomePage(props) {
   const [products, setProducts] = useState([
     {
       id: 1,
@@ -31,12 +32,13 @@ function HomePage() {
       price: "50.000.000đ",
     },
     {
-      id: 3,
+      id: 4,
       img: "http://www.fuki.co.jp/images/sportsp2.jpg",
       name: "FK310 LAⅢSportSp",
       price: "50.000.000đ",
     },
   ]);
+  const [cart, setCart] = useState([]);
   return (
     <div>
       <Carousel />
@@ -45,7 +47,7 @@ function HomePage() {
         <h1>Các sản phẩm bán chạy</h1>
         <div className="list-item">
           {products.map((e, i) => (
-            <Cart key={i} item={e}></Cart>
+            <Cart key={i} item={e} cart={cart} setCart={setCart}></Cart>
           ))}
         </div>
       </div>

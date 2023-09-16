@@ -10,22 +10,34 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/HomePage/LoginForm";
 import { useState } from "react";
+import Cart from "./components/Cart/Cart";
+import ShopContextProvider from "./context/Context";
+import Context from "./context/Context";
+import { Cartcontext } from "./context/Context";
 function App() {
+  const [cartItems, setCartItem] = useState([]);
   const [cart, setCart] = useState([]);
   const [show, setShow] = useState(true);
+  const [product, setProduct] = useState([]);
   const handleClick = (item) => {
     console.log(item);
   };
   return (
     <div>
-      <Navbar size={0}></Navbar>
-      <Routes>
-        <Route path="/" element={<HomePage></HomePage>}></Route>
-        <Route path="/register" element={<RegisterForm></RegisterForm>}></Route>
-        <Route path="/login" element={<LoginForm></LoginForm>}></Route>
-        <Route path="/admin" element={<Admin></Admin>}></Route>
-        <Route path="/product/:productId" element={<Product></Product>}></Route>
-      </Routes>
+      <Navbar cart={cart} size={0}></Navbar>
+      <ShopContextProvider value={cartItems}>
+        <Routes>
+          <Route path="/" element={<HomePage></HomePage>}></Route>
+          <Route
+            path="/register"
+            element={<RegisterForm></RegisterForm>}
+          ></Route>
+          <Route path="/login" element={<LoginForm></LoginForm>}></Route>
+          <Route path="/admin" element={<Admin></Admin>}></Route>
+          <Route path="/product/:productId" element={<Product />} />
+          <Route cart={cart} path="/product/" element={<Product />} />
+        </Routes>
+      </ShopContextProvider>
       <Footer></Footer>
     </div>
   );

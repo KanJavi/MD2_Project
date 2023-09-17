@@ -4,13 +4,13 @@ import axios from "axios";
 import "./Product.css";
 import Navbar from "../Navbar/Navbar";
 
-const Product = () => {
+const Product = ({}) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/products`)
+      .get("http://localhost:8000/products")
       .then((response) => {
         console.log("API response:", response.data);
         setProducts(response.data);

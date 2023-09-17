@@ -13,15 +13,24 @@ import { Link } from "react-router-dom";
 function CollapsibleExample() {
   const [show, setShow] = useState(false);
   const [cart, setCart] = useState([]);
-  let localCart = JSON.parse(localStorage.getItem("cart"));
-  console.log("localCart", localCart);
-  // setCart(savedCart);
-  useEffect(() => {
-    // Lấy giỏ hàng từ localStorage khi thành phần được tạo ra
-    setCart(localCart);
-  }, [localCart.length]);
-  console.log("cart", cart);
+  // useEffect(() => {
+  //   const savedCart = JSON.parse(localStorage.getItem("cart"));
+  //   if (savedCart) {
+  //     setCart(savedCart);
+  //   }
+  // }, []);
+  // const updateCart = (newCart) => {
+  //   // Cập nhật giỏ hàng trong component Navbar
+  //   setCart(newCart);
 
+  //   // Cập nhật giỏ hàng trong localStorage
+  //   localStorage.setItem("cart", JSON.stringify(newCart));
+  // };
+  // Xoá sản phẩm trong giỏ hàng
+  // const handleRemoveFromCart = (productId) => {
+  //   const updatedCart = cart.filter((item) => item.id !== productId);
+  //   updateCart(updatedCart);
+  // };
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -82,44 +91,50 @@ function CollapsibleExample() {
               )}
               <div id="cart" variant="primary" onClick={handleShow}>
                 {" "}
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span id="count">{cart.length}</span>
+                <Link to="/cart">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </Link>
               </div>
               <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
-              <Offcanvas show={show} onHide={handleClose}>
+              {/* <Offcanvas show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                   <Offcanvas.Title>Giỏ hàng</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  {cart.length === 0 ? (
-                    <p>Giỏ hàng của bạn đang trống.</p>
-                  ) : (
-                    <ul>
+                  {cart.length > 0 ? (
+                    <>
                       {cart.map((item) => (
-                        <li key={item.id}>
-                          <img src={item.img} />
-                          <p>{item.name}</p>
-                          <p>Giá: {item.price}</p>
-                          <p>Số lượng: {item.amount}</p>
+                        <span className="cartitem" key={item.id}>
+                          <img
+                            src={item.img}
+                            className="cartItemImg"
+                            alt={item.name}
+                          />
+                          <div className="cartItemDetail">
+                            <span>{item.name}</span>
+                            <span>{item.price.split(".")[0]}đ</span>
+                          </div>
                           <AiFillDelete
                             fontSize="20px"
                             style={{ cursor: "pointer" }}
-                          ></AiFillDelete>
-                        </li>
+                            onClick={() => handleRemoveFromCart(item.id)}
+                          />
+                        </span>
                       ))}
-                    </ul>
+                      <Link to="/cart">
+                        <Button
+                          variant="dark"
+                          style={{ width: "95%", margin: "0 10px" }}
+                        >
+                          Thanh Toán
+                        </Button>
+                      </Link>
+                    </>
+                  ) : (
+                    <span style={{ padding: 10 }}>Giỏ hàng trống</span>
                   )}
-                  <Link to="/cart">
-                    {" "}
-                    <Button
-                      variant="dark"
-                      style={{ width: "95%", margin: "0 10px" }}
-                    >
-                      Go To Cart
-                    </Button>
-                  </Link>
                 </Offcanvas.Body>
-              </Offcanvas>
+              </Offcanvas> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

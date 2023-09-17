@@ -10,18 +10,20 @@ import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/HomePage/LoginForm";
 import { useState } from "react";
 import Cart from "./components/Cart/Cart";
+import Pay from "./components/Pay/Pay";
 
 function App() {
   const [cartItems, setCartItem] = useState([]);
   const [cart, setCart] = useState([]);
   const [show, setShow] = useState(true);
   const [product, setProduct] = useState([]);
+  const [updateCart, setUpdateCart] = useState([]);
   const handleClick = (item) => {
     console.log(item);
   };
   return (
     <div>
-      <Navbar cart={cart} size={cart.length}></Navbar>
+      <Navbar updateCart={updateCart} cart={cart} size={cart.length}></Navbar>
 
       <Routes>
         <Route path="/" element={<HomePage></HomePage>}></Route>
@@ -32,10 +34,12 @@ function App() {
         <Route
           cart={cart}
           setCart={setCart}
-          path="/product/"
+          updateCart={updateCart}
+          path="/product"
           element={<Product />}
         />
         <Route cart={cart} path="/cart" element={<Cart></Cart>}></Route>
+        <Route path="/pay" element={<Pay></Pay>}></Route>
       </Routes>
 
       <Footer></Footer>

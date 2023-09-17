@@ -1,56 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Offcanvas } from "react-bootstrap";
 import axios from "axios";
+import "./Product.css";
+import Navbar from "../Navbar/Navbar";
 
 const Product = () => {
-  const [product, setProduct] = useState({});
-  const [cart, setCart] = useState([]); // State lưu trữ giỏ hàng
-
-  const { id } = useParams();
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    if (id) {
-      axios
-        .get(`http://localhost:8000/products/${id}`)
+    axios
+      .get(`http://localhost:8000/products`)
+      .then((response) => {
+        console.log("API response:", response.data);
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error("API error:", error);
+      });
 
-        .then((response) => {
-          console.log("API response:", response.data);
-          console.log(response.data);
-          setProduct(response.data);
-        })
-        .catch((error) => {
-          console.error("API error:", error);
-        });
+    // Lấy giỏ hàng từ localStorage khi thành phần được tạo ra
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
     }
-  }, [id]);
-  console.log("Product state:", product);
+  }, []);
 
-  // Hàm xử lý khi người dùng nhấn vào nút "Thêm vào giỏ hàng"
-  const handleBuy = () => {
-    // Tạo một bản sao mới của giỏ hàng
+  const handleBuy = (product) => {
     const newCart = [...cart];
+    const existingCartItem = newCart.find((item) => item.id === product.id);
 
-    // Thêm sản phẩm vào giỏ hàng
-    newCart.push(product);
+    if (existingCartItem) {
+      existingCartItem.amount += 1;
+    } else {
+      // Nếu sản phẩm chưa có trong giỏ hàng, thêm sản phẩm vào giỏ hàng với số lượng là 1
+      newCart.push({ ...product, amount: 1 });
+    }
+
+    // Lưu giỏ hàng vào localStorage
+    localStorage.setItem("cart", JSON.stringify(newCart));
 
     setCart(newCart);
-
     console.log("Giỏ hàng:", newCart);
   };
 
   return (
-    <div className="cart-item">
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={product.img} />
-        <Card.Body>
-          <Card.Title>{product.name}</Card.Title>
-          <Card.Text>{product.price}</Card.Text>
-          <Button variant="dark" onClick={handleBuy}>
-            Thêm vào giỏ hàng
-          </Button>
-        </Card.Body>
-      </Card>
+    <div className="product-list">
+      {products.map((product) => (
+        <div className="cart-item" key={product.id}>
+          <Card style={{ width: "18rem" }}>
+            <Card.Img variant="top" src={product.img} />
+            <Card.Body>
+              <Card.Title>{product.name}</Card.Title>
+              <Card.Text>{product.price}</Card.Text>
+              <Button variant="dark" onClick={() => handleBuy(product)}>
+                Thêm vào giỏ hàng
+              </Button>
+            </Card.Body>
+          </Card>
+        </div>
+      ))}
     </div>
   );
 };

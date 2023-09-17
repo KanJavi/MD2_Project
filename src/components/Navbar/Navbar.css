@@ -76,3 +76,32 @@
   .navbar {
     transition: background-color 0.3s ease;
   }
+  /* Apply styles to the <ul> */
+ul {
+  list-style-type: none; /* Remove default list bullet points */
+  padding: 0; /* Remove default padding */
+}
+
+/* Apply styles to each <li> */
+li {
+  display: flex; /* Use flexbox for layout */
+  margin-bottom: 20px; /* Add some vertical spacing between items */
+}
+
+/* Style the item image */
+li img {
+  max-width: 100px; /* Limit the image width */
+  margin-right: 10px; /* Add spacing to the right of the image */
+}
+
+/* Style the item details */
+li p {
+  margin: 0; /* Remove default margins */
+}
+
+/* Style the price and quantity */
+li p:nth-child(3), /* Style the price (3rd <p> element) */
+li p:nth-child(4) { /* Style the quantity (4th <p> element) */
+  font-weight: bold; /* Make the text bold */
+}
+

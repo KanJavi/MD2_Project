@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import HomePage from "./components/HomePage/HomePage";
 import { Routes, Route } from "react-router-dom";
@@ -11,9 +10,7 @@ import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./components/HomePage/LoginForm";
 import { useState } from "react";
 import Cart from "./components/Cart/Cart";
-import ShopContextProvider from "./context/Context";
-import Context from "./context/Context";
-import { Cartcontext } from "./context/Context";
+
 function App() {
   const [cartItems, setCartItem] = useState([]);
   const [cart, setCart] = useState([]);
@@ -24,20 +21,23 @@ function App() {
   };
   return (
     <div>
-      <Navbar cart={cart} size={0}></Navbar>
-      <ShopContextProvider value={cartItems}>
-        <Routes>
-          <Route path="/" element={<HomePage></HomePage>}></Route>
-          <Route
-            path="/register"
-            element={<RegisterForm></RegisterForm>}
-          ></Route>
-          <Route path="/login" element={<LoginForm></LoginForm>}></Route>
-          <Route path="/admin" element={<Admin></Admin>}></Route>
-          <Route path="/product/:productId" element={<Product />} />
-          <Route cart={cart} path="/product/" element={<Product />} />
-        </Routes>
-      </ShopContextProvider>
+      <Navbar cart={cart} size={cart.length}></Navbar>
+
+      <Routes>
+        <Route path="/" element={<HomePage></HomePage>}></Route>
+        <Route path="/register" element={<RegisterForm></RegisterForm>}></Route>
+        <Route path="/login" element={<LoginForm></LoginForm>}></Route>
+        <Route path="/admin" element={<Admin></Admin>}></Route>
+        <Route path="/product/:productId" element={<Product />} />
+        <Route
+          cart={cart}
+          setCart={setCart}
+          path="/product/"
+          element={<Product />}
+        />
+        <Route cart={cart} path="/cart" element={<Cart></Cart>}></Route>
+      </Routes>
+
       <Footer></Footer>
     </div>
   );

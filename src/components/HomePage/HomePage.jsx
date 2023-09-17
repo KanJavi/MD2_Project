@@ -7,7 +7,6 @@ import Anh1 from "./img/vang1.jpg";
 import Anh2 from "./img/dodo.jpg";
 import Cart from "../Card/Cart";
 import Product from "../HomePage/Product";
-import { Cartcontext } from "../../context/Context";
 
 import "./HomePage.css";
 

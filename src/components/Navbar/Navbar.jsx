@@ -1,18 +1,26 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+
 import "./Navbar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-function CollapsibleExample(props) {
-  const { cart } = props;
+function CollapsibleExample() {
   const [show, setShow] = useState(false);
+  const [cart, setCart] = useState([]);
+  let localCart = JSON.parse(localStorage.getItem("cart"));
+  console.log("localCart", localCart);
+  // setCart(savedCart);
+  useEffect(() => {
+    // Lấy giỏ hàng từ localStorage khi thành phần được tạo ra
+    setCart(localCart);
+  }, [localCart.length]);
+  console.log("cart", cart);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLogout = () => {
@@ -89,14 +97,27 @@ function CollapsibleExample(props) {
                     <ul>
                       {cart.map((item) => (
                         <li key={item.id}>
-                          <img src={item.productImg} alt={item.productName} />
-                          <p>{item.productName}</p>
-                          <p>Giá: {item.productPrice}</p>
+                          <img src={item.img} />
+                          <p>{item.name}</p>
+                          <p>Giá: {item.price}</p>
                           <p>Số lượng: {item.amount}</p>
+                          <AiFillDelete
+                            fontSize="20px"
+                            style={{ cursor: "pointer" }}
+                          ></AiFillDelete>
                         </li>
                       ))}
                     </ul>
                   )}
+                  <Link to="/cart">
+                    {" "}
+                    <Button
+                      variant="dark"
+                      style={{ width: "95%", margin: "0 10px" }}
+                    >
+                      Go To Cart
+                    </Button>
+                  </Link>
                 </Offcanvas.Body>
               </Offcanvas>
             </Nav>

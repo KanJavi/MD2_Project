@@ -7,6 +7,7 @@ import Navbar from "../Navbar/Navbar";
 const Product = ({}) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     axios
@@ -44,6 +45,14 @@ const Product = ({}) => {
     console.log("Giỏ hàng:", newCart);
   };
 
+  const openProductDetails = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const closeProductDetails = () => {
+    setSelectedProduct(null);
+  };
+
   return (
     <div className="product-list">
       {products.map((product) => (
@@ -56,10 +65,33 @@ const Product = ({}) => {
               <Button variant="dark" onClick={() => handleBuy(product)}>
                 Thêm vào giỏ hàng
               </Button>
+              <Button
+                variant="primary"
+                onClick={() => openProductDetails(product)}
+              >
+                Chi tiết sản phẩm
+              </Button>
             </Card.Body>
           </Card>
         </div>
       ))}
+
+      {/* Modal chi tiết sản phẩm */}
+      <Offcanvas show={selectedProduct !== null} onHide={closeProductDetails}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Chi tiết sản phẩm</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {selectedProduct && (
+            <div>
+              <h2>{selectedProduct.name}</h2>
+              <p>Giá: {selectedProduct.price}</p>
+              <p>Mô tả: {selectedProduct.description}</p>
+              {/* Thêm các thông tin chi tiết khác của sản phẩm */}
+            </div>
+          )}
+        </Offcanvas.Body>
+      </Offcanvas>
     </div>
   );
 };
